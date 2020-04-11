@@ -12,25 +12,69 @@ class InitNavigation extends AbstractMigration {
 	/**
 	 * @return void
 	 */
-	public function up() {
-		if ($this->hasTable('navigation_items')) {
+	public function change() {
+		if ($this->hasTable('navigation_trees')) {
 			return;
 		}
 
+		$this->table('navigation_trees')
+			->addColumn('title', 'string', [
+				'null' => false,
+				'limit' => 190,
+			])
+			->addColumn('key', 'string', [
+				'null' => false,
+				'limit' => 100,
+			])
+			->addColumn('class', 'string', [
+				'default' => null,
+				'limit' => 100,
+				'null' => true,
+			])
+			->addColumn('params', 'text', [
+				'default' => null,
+				'null' => true,
+			])
+			->addColumn('created', 'datetime', [
+				'default' => null,
+				'null' => true,
+			])
+			->addColumn('modified', 'datetime', [
+				'default' => null,
+				'null' => true,
+			])
+			->addColumn('item_count', 'integer', [
+				'default' => 0,
+				'limit' => 10,
+				'null' => false,
+				'signed' => false,
+			])
+			->addColumn('params', 'text', [
+				'default' => null,
+				'null' => true,
+			])
+			->addIndex([
+					'key',
+				], [
+					'unique' => true,
+				]
+			)
+			->create();
+
 		$this->table('navigation_items')
+			->addColumn('navigation_tree_id', 'integer', [
+				'default' => null,
+				'limit' => 10,
+				'null' => false,
+				'signed' => false,
+			])
 			->addColumn('parent_id', 'integer', [
 				'default' => null,
 				'limit' => 10,
 				'null' => true,
 				'signed' => false,
 			])
-        	->addColumn('lft', 'integer', [
-				'default' => null,
-				'limit' => 10,
-				'null' => true,
-				'signed' => false,
-			])
-        	->addColumn('rght', 'integer', [
+			->addColumn('lft', 'integer', [
 				'default' => null,
 				'limit' => 10,
 				'null' => true,
@@ -42,7 +86,13 @@ class InitNavigation extends AbstractMigration {
 				'null' => true,
 				'signed' => false,
 			])
-			->addColumn('name', 'string', [
+			->addColumn('rght', 'integer', [
+				'default' => null,
+				'limit' => 10,
+				'null' => true,
+				'signed' => false,
+			])
+			->addColumn('title', 'string', [
 				'default' => null,
 				'limit' => 100,
 				'null' => true,
@@ -72,8 +122,18 @@ class InitNavigation extends AbstractMigration {
 				'limit' => 190,
 				'null' => true,
 			])
+			->addColumn('icon', 'string', [
+				'default' => null,
+				'limit' => 100,
+				'null' => true,
+			])
 			->addColumn('params', 'text', [
 				'default' => null,
+				'null' => true,
+			])
+			->addColumn('rel', 'string', [
+				'default' => null,
+				'limit' => 100,
 				'null' => true,
 			])
 			->addColumn('created', 'datetime', [
@@ -85,13 +145,6 @@ class InitNavigation extends AbstractMigration {
 				'null' => true,
 			])
 			->create();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function down() {
-		$this->dropTable('database_logs');
 	}
 
 }
