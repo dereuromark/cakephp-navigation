@@ -1,0 +1,51 @@
+{
+	"name": "dereuromark/cakephp-navigation",
+	"description": "CakePHP Navigation Plugin",
+	"type": "cakephp-plugin",
+	"keywords": ["cakephp", "navigation", "menu", "site tree", "breadcrumb"],
+	"homepage": "https://github.com/dereuromark/cakephp-navigation/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Scherer",
+			"homepage": "https://www.dereuromark.de",
+			"role": "Maintainer"
+		},
+		{
+			"name": "Other contributors",
+			"homepage": "https://github.com/dereuromark/cakephp-navigation/graphs/contributors",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/dereuromark/cakephp-navigation/issues",
+		"source": "https://github.com/dereuromark/cakephp-navigation/"
+	},
+	"require": {
+		"php": ">=7.2",
+		"cakephp/cakephp": "^3.8"
+	},
+	"require-dev": {
+		"fig-r/psr2r-sniffer": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Navigation\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Navigation\\Test\\": "tests/",
+			"TestApp\\": "tests/test_app/src/"
+		}
+	},
+	"scripts": {
+		"test": "php phpunit.phar",
+		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-6.5.13.phar && mv phpunit-6.5.13.phar phpunit.phar || true",
+		"test-coverage": "php phpunit.phar --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml",
+		"stan": "phpstan analyse -c tests/phpstan.neon -l 5 src/",
+		"stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^0.12 && mv composer.backup composer.json",
+		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php --ignore=/config/Migrations/ src/ tests/",
+		"cs-fix": "phpcbf -v --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php --ignore=/config/Migrations/ src/ tests/"
+	}
+}
