@@ -1,5 +1,10 @@
 ## Ideas and TODOs
 
+### Rendering
+Decide:
+- https://github.com/dereuromark/cakephp-menu
+- https://github.com/icings/menu
+
 ### visibility
 It may be useful to hide some links in specific situations.
 For that we could add the visibility flag (tinyint 2 as bitmask) where you can tell on which template the link should be visible.
