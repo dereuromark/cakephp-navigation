@@ -27,3 +27,13 @@ Icons, attributes, ...
 
 Sometimes you may want to hide some links based on custom rules.
 
+
+### JS Display
+
+Maybe https://www.jqueryscript.net/other/tree-list-bootstrap.html
+
+even better with search and select + action => https://www.jqueryscript.net/demo/hierarchical-searchable-tree/
+
+even even better with drag&drop: https://gijgo.com/tree/demos/bootstrap-treeview-drag-and-drop
+
+also with multiple trees: https://www.igniteui.com/tree/drag-and-drop-multiple-trees
