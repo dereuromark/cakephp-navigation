@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/dereuromark/cakephp-navigation/d/total.svg)](https://packagist.org/packages/dereuromark/cakephp-navigation)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
-This branch is for use with **CakePHP 4.0+**. For details see [version map](https://github.com/dereuromark/cakephp-navigation/wiki#cakephp-version-map).
+This branch is for use with **CakePHP 3.8+**. For details see [version map](https://github.com/dereuromark/cakephp-navigation/wiki#cakephp-version-map).
 
 ## Key Features
 

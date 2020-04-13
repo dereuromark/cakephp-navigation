@@ -100,12 +100,12 @@ class InitNavigation extends AbstractMigration {
 				->addColumn('controller', 'string', [
 					'default' => null,
 					'limit' => 100,
-					'null' => true,
+					'null' => false,
 				])
 				->addColumn('action', 'string', [
 					'default' => null,
 					'limit' => 100,
-					'null' => true,
+					'null' => false,
 				])
 				->addColumn('pass', 'string', [
 					'default' => null,

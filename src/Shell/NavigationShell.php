@@ -31,7 +31,31 @@ class NavigationShell extends Shell {
 
 		$items = $this->finder()->items($this->params);
 
-		dd($items);
+		$this->out('Found ' . count($items) . ' controllers');
+
+		$navigationTree = null;
+		if (!$this->param('dry-run')) {
+			$navigationTree = $this->NavigationTrees->create($key, $title);
+		}
+
+		$count = 0;
+		foreach ($items as $controller => $controllerItems) {
+			$parentItem = null;
+			foreach ($controllerItems as $item) {
+				if (!$this->param('dry-run')) {
+					$navigationItem = $this->NavigationTrees->NavigationItems->create($item, $navigationTree, $parentItem);
+
+					if ($parentItem === null) {
+						$parentItem = $navigationItem;
+					}
+				}
+
+				$this->out(' - ' . $item->getController()->getName() . '::' . $item->getName(), 1, static::VERBOSE);
+				$count++;
+			}
+		}
+
+		$this->success('Tree `' . $key . '` with ' . $count . ' items created.');
 	}
 
 	/**
